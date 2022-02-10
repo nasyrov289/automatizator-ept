@@ -9,7 +9,7 @@ public class TxnsDto {
     private String payeePhone;
     private String currency;
     private String text;
-    private String amount;
+    private Double amount;
     private int useCase;
     private String orderNum;
     private String creationDate;
@@ -17,7 +17,7 @@ public class TxnsDto {
     public TxnsDto() {
     }
 
-    public TxnsDto(long idTxn, long idPayer, String payerPhone, long idPayee, String payeePhone, String currency, String text, String amount, int useCase, String orderNum, String creationDate) {
+    public TxnsDto(long idTxn, long idPayer, String payerPhone, long idPayee, String payeePhone, String currency, String text, Double amount, int useCase, String orderNum, String creationDate) {
         this.idTxn = idTxn;
         this.idPayer = idPayer;
         this.payerPhone = payerPhone;
@@ -87,11 +87,11 @@ public class TxnsDto {
         this.text = text;
     }
 
-    public String getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
