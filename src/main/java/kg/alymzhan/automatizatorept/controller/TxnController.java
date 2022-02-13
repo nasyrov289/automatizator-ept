@@ -1,7 +1,6 @@
 package kg.alymzhan.automatizatorept.controller;
 
-import kg.alymzhan.automatizatorept.dto.TxnsDto;
-import kg.alymzhan.automatizatorept.service.AutomationService;
+import kg.alymzhan.automatizatorept.service.TxnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,18 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import java.io.IOException;
+import java.sql.SQLException;
 
 @Controller
-@RequestMapping("/api")
-public class MainController {
+@RequestMapping("/api/v1")
+public class TxnController {
 
     @Autowired
-    private AutomationService registerService;
+    private TxnService registerService;
 
     @GetMapping("/txns")
     public @ResponseBody
-    List<TxnsDto> getAllTxns(@RequestParam("start") String startDay, @RequestParam("end") String endDay) {
-        return registerService.getAllTxns(startDay, endDay);
+    String getAllTxns(@RequestParam("start") String startDay, @RequestParam("end") String endDay) throws SQLException, IOException {
+        registerService.exportToXlsx(startDay, endDay);
+        return "Успешно выгружено";
     }
 }
